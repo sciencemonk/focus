@@ -20,7 +20,7 @@ var stateHandlers = {
             //  Change state to START_MODE
             this.handler.state = constants.states.START_MODE;
 
-            var message = 'Welcome to Focus, where your mind will become sharper than a sword and stronger than an elephant. Say go or start to begin';
+            var message = 'Welcome to Focus Game, where your mind will become sharper than a sword and stronger than an elephant. Say go or start to begin';
             var reprompt = 'You can say, go or start, to begin.';
 
             this.response.speak(message).listen(reprompt);
@@ -41,7 +41,7 @@ var stateHandlers = {
             controller.play.call(this);
         },
         'AMAZON.HelpIntent' : function () {
-            var message = 'Welcome to the Focus. You can say begin or start to begin playing';
+            var message = 'Welcome to Focus Game. You can say begin or start to begin playing';
             this.response.speak(message).listen(message);
             this.emit(':responseReady');
         },
@@ -82,7 +82,7 @@ var stateHandlers = {
             var reprompt;
             if (this.attributes['playbackFinished']) {
                 this.handler.state = constants.states.START_MODE;
-                message = 'Welcome to the Focus. You can say go or start to begin.';
+                message = 'Welcome to Focus Game. You can say go or start to begin.';
                 reprompt = 'You can say, go or start, to begin.';
             } else {
                 this.handler.state = constants.states.RESUME_DECISION_MODE;
@@ -108,7 +108,7 @@ var stateHandlers = {
         'AMAZON.StartOverIntent' : function () { controller.startOver.call(this) },
         'AMAZON.HelpIntent' : function () {
             // This will called while audio is playing and a user says "ask <invocation_name> for help"
-            var message = 'You are playing Focus. You can say, Next or Previous to navigate through different levels. ' +
+            var message = 'You are playing Focus Game. You can say, Next or Previous to navigate through different levels. ' +
                 'At any time, you can say Pause to pause and Resume to resume.';
             this.response.speak(message).listen(message);
             this.emit(':responseReady');
@@ -234,7 +234,7 @@ var controller = function () {
                     // Reached at the end. Thus reset state to start mode and stop playing.
                     this.handler.state = constants.states.START_MODE;
 
-                    var message = 'Congratulations young Jedi, you have completed Focus. See you tomorrow.';
+                    var message = 'Congratulations young Jedi, you have completed Focus Game. See you tomorrow.';
                     this.response.speak(message).audioPlayerStop();
                     return this.emit(':responseReady');
                 }
